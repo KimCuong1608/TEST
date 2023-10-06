@@ -16,13 +16,11 @@
 #define HMI_CURRENT 0X01
 #define HMI_TEMP 0x02
 
-//HMI Status
+//HMI State
 #define HMI_CONNECT 0x10
-#define HMI_WARNING 0x11
-#define HMI_ERROR 0x12
-#define HMI_STOP 0x13
+#define HMI_STOP 0x11
 
-//Error
+//HMI Warning
 typedef enum
 {
 	Reverse_Polarity = 0xE0;
@@ -35,7 +33,7 @@ typedef enum
 	Overate_50_Percent_Current = 0xE7;
 	Overate_25_Percent_Current = 0xE8;	
 	Grid_Off = 0xE9;
-}error;
+}Charger_Warning;
 
 //Struct
 typedef struct
@@ -45,12 +43,13 @@ typedef struct
 	uint8_t vout[3];
 	uint8_t iout[3];
 	uint8_t time[3];
-}HMI_Data;
+}Charger_Setup;
 
 //HMI Function
 void HMI_Transmit(UART_HandleTypeDef* huart, uint8_t var, float data);
-void HMI_Status(UART_HandleTypeDef* huart, uint8_t status);
-void HMI_Fillter(HMI_Data* data, uint8_t str[8]);
+void HMI_State(UART_HandleTypeDef* huart, uint8_t state);
+void HMI_Warning(UART_HandleTypeDef* huart, Charger_Warning warning);
+void HMI_Fillter(Charger_Setup* data, uint8_t str[8]);
 
 //Convert Function
 float uint8_to_float(uint8_t* data, float x);
