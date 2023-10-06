@@ -22,6 +22,21 @@
 #define HMI_ERROR 0x12
 #define HMI_STOP 0x13
 
+//Error
+typedef enum
+{
+	Reverse_Polarity = 0xE0;
+	Over_Primary_Current = 0xE1;
+	Over_Output_Voltage = 0xE2;
+	Over_Temperature = 0xE3;
+	Over_Power = 0xE4;
+	Low_Input_Voltage_Protect = 0xE5;
+	Overate_75_Percent_Current = 0xE6;
+	Overate_50_Percent_Current = 0xE7;
+	Overate_25_Percent_Current = 0xE8;	
+	Grid_Off = 0xE9;
+}error;
+
 //Struct
 typedef struct
 {
